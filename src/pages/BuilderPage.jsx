@@ -9,7 +9,9 @@ export default function BuilderPage() {
     hammer: '',
     gold: '',
     diamond: '',
-    essence: ''
+    diamondBound: '',
+    essence: '',
+    essenceBound: ''
   });
 
   const toggleCompleted = (id) => {
@@ -255,25 +257,45 @@ export default function BuilderPage() {
                 </div>
                 <div className="col-span-2 sm:col-span-1 xl:col-span-2">
                   <label className="block text-xs text-slate-400 mb-1.5 ml-1 uppercase tracking-wider font-semibold">Diamond</label>
-                  <input 
-                    type="text" 
-                    name="diamond"
-                    value={inventory.diamond}
-                    onChange={handleInventoryChange}
-                    placeholder="0"
-                    className="w-full bg-black/30 border border-cyan-500/20 rounded-xl px-4 py-2.5 text-cyan-400 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder-slate-600 font-mono"
-                  />
+                  <div className="flex gap-2">
+                    <input 
+                      type="text" 
+                      name="diamond"
+                      value={inventory.diamond}
+                      onChange={handleInventoryChange}
+                      placeholder="Unbound"
+                      className="w-full bg-black/30 border border-cyan-500/20 rounded-xl px-4 py-2.5 text-cyan-400 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder-slate-600 font-mono"
+                    />
+                    <input 
+                      type="text" 
+                      name="diamondBound"
+                      value={inventory.diamondBound}
+                      onChange={handleInventoryChange}
+                      placeholder="Bound"
+                      className="w-full bg-black/30 border border-cyan-500/20 rounded-xl px-4 py-2.5 text-cyan-400 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder-slate-600 font-mono"
+                    />
+                  </div>
                 </div>
                 <div className="col-span-2 sm:col-span-1 xl:col-span-2">
                   <label className="block text-xs text-slate-400 mb-1.5 ml-1 uppercase tracking-wider font-semibold">Essence</label>
-                  <input 
-                    type="text" 
-                    name="essence"
-                    value={inventory.essence}
-                    onChange={handleInventoryChange}
-                    placeholder="0"
-                    className="w-full bg-black/30 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-emerald-400 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all placeholder-slate-600 font-mono"
-                  />
+                  <div className="flex gap-2">
+                    <input 
+                      type="text" 
+                      name="essence"
+                      value={inventory.essence}
+                      onChange={handleInventoryChange}
+                      placeholder="Unbound"
+                      className="w-full bg-black/30 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-emerald-400 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all placeholder-slate-600 font-mono"
+                    />
+                    <input 
+                      type="text" 
+                      name="essenceBound"
+                      value={inventory.essenceBound}
+                      onChange={handleInventoryChange}
+                      placeholder="Bound"
+                      className="w-full bg-black/30 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-emerald-400 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all placeholder-slate-600 font-mono"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -295,8 +317,8 @@ export default function BuilderPage() {
               <div className="space-y-4 relative z-10">
                 {renderSummaryRow(`Lv.${level} Hammer`, totals.hammer, inventory.hammer, 'text-white', '')}
                 {renderSummaryRow('Gold', totals.gold, inventory.gold, 'text-yellow-400', 'drop-shadow-[0_0_8px_rgba(250,204,21,0.4)]')}
-                {renderSummaryRow('Diamond', totals.diamond, inventory.diamond, 'text-cyan-400', 'drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]')}
-                {renderSummaryRow('Essence of Life', totals.essence, inventory.essence, 'text-emerald-400', 'drop-shadow-[0_0_8px_rgba(52,211,153,0.4)]')}
+                {renderSummaryRow('Diamond', totals.diamond, (Number(inventory.diamond) || 0) + (Number(inventory.diamondBound) || 0), 'text-cyan-400', 'drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]')}
+                {renderSummaryRow('Essence of Life', totals.essence, (Number(inventory.essence) || 0) + (Number(inventory.essenceBound) || 0), 'text-emerald-400', 'drop-shadow-[0_0_8px_rgba(52,211,153,0.4)]')}
               </div>
             </div>
             
